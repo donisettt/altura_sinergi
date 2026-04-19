@@ -8,8 +8,10 @@ use App\Http\Controllers\Web\Admin\FooterController;
 use App\Http\Controllers\Web\Admin\HeroController;
 use App\Http\Controllers\Web\Admin\LeadController;
 use App\Http\Controllers\Web\Admin\MetricController;
+use App\Http\Controllers\Web\Admin\ProfileController;
 use App\Http\Controllers\Web\Admin\SeoController;
 use App\Http\Controllers\Web\Admin\ServiceController;
+use App\Http\Controllers\Web\Admin\SettingController;
 use App\Http\Controllers\Web\Admin\UserController;
 use App\Http\Controllers\Web\Admin\ValuePropositionController;
 use App\Http\Controllers\Web\Auth\LoginController;
@@ -26,6 +28,15 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // System Settings
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [SettingController::class, 'update'])->name('settings.update');
+
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 
     // Users
     Route::resource('users', UserController::class)->except(['show']);

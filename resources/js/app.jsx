@@ -13,7 +13,7 @@ window.route = (name, params, absolute, config = window.Ziggy) =>
     ziggyRoute(name, params, absolute, config);
 
 createInertiaApp({
-    title: (title) => (title ? `${title} — ${appName}` : appName),
+    title: (title) => (title ? `${title} - ${appName}` : appName),
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.jsx`,
