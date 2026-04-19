@@ -99,7 +99,7 @@ export function Navbar({ sidebarCollapsed, onMenuToggle }) {
                                 <p className="text-xs text-text-muted truncate">{user?.email}</p>
                             </div>
                             <div className="p-1.5 space-y-0.5">
-                                <Link href="#" className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-hover rounded-lg transition-colors">
+                                <Link href={route('admin.profile.edit')} className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-hover rounded-lg transition-colors">
                                     <User size={14} /> Profile
                                 </Link>
                                 <Link href="#" className="flex items-center gap-3 px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-hover rounded-lg transition-colors">

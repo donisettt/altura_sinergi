@@ -47,7 +47,7 @@ const navGroups = [
             { label: 'Blogs',        icon: BookOpen,       route: 'admin.users.index', soon: true },
             { label: 'SEO Settings', icon: Search,         route: 'admin.seo.index' },
             { label: 'Users',        icon: Users,          route: 'admin.users.index' },
-            { label: 'Settings',     icon: Settings,       route: 'admin.users.index', soon: true },
+            { label: 'Settings',     icon: Settings,       route: 'admin.settings.index' },
         ],
     },
 ];
