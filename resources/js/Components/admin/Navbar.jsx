@@ -67,20 +67,6 @@ export function Navbar({ sidebarCollapsed, onMenuToggle }) {
 
             {/* Right Actions */}
             <div className="flex items-center gap-1 shrink-0">
-                {/* Theme Toggle */}
-                <button
-                    onClick={toggle}
-                    title={isDark ? 'Light mode' : 'Dark mode'}
-                    className="w-9 h-9 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-bg-hover transition-colors"
-                >
-                    {isDark ? <Sun size={17} /> : <Moon size={17} />}
-                </button>
-
-                {/* Notifications */}
-                <button className="relative w-9 h-9 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-bg-hover transition-colors">
-                    <Bell size={17} />
-                    <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-bg-navbar" />
-                </button>
 
                 {/* Divider */}
                 <div className="w-px h-6 bg-border mx-1" />

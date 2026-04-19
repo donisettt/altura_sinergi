@@ -19,9 +19,11 @@ class DashboardController extends Controller
     public function index(): Response
     {
         return Inertia::render('Admin/Dashboard/Index', [
-            'stats'       => $this->dashboardService->getOverviewStats(),
-            'recentUsers' => $this->dashboardService->getRecentUsers(),
-            'roleStats'   => $this->dashboardService->getRoleStats(),
+            'stats'            => $this->dashboardService->getOverviewStats(),
+            'chartData'        => $this->dashboardService->getChartData(),
+            'leadStatusStats'  => $this->dashboardService->getLeadStatusDistribution(),
+            'recentUsers'      => $this->dashboardService->getRecentUsers(),
+            'recentLeads'      => $this->dashboardService->getRecentLeads(),
         ]);
     }
 }

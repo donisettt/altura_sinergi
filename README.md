@@ -1,66 +1,127 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Altura Sinergi - Core Branding Engine & Mini-CRM
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Ikhtisar
+Altura Sinergi adalah aplikasi web monolitik yang dibangun menggunakan kerangka kerja Laravel dan antarmuka React via Inertia.js. Sistem ini berfungsi sebagai titik sentuh digital utama (Landing Page) yang terintegrasi penuh dengan Content Management System (CMS) dan Mini-CRM (Manajemen Prospek/Leads) untuk menangkap dan melacak pertanyaan bisnis secara mulus.
 
-## About Laravel
+Platform ini dirancang khusus untuk memenuhi kebutuhan bisnis B2B penyedia layanan dan infrastruktur, memberdayakan administrator sistem untuk secara berkelanjutan memperbarui portofolio, memodifikasi peran pengguna, dan memantau jalur masuk calon klien.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tumpukan Teknologi (Technology Stack)
+- **Backend:** Laravel 11.x (PHP 8.2+)
+- **Frontend:** React 18.x via Inertia.js
+- **Styling:** Tailwind CSS (dikonfigurasikan untuk Dashboard modular bertema gelap)
+- **Database:** MySQL / MariaDB
+- **Routing:** Ziggy (Client-Side Laravel Routing)
+- **Editor:** Tiptap (Pembuatan Teks Kaya / Rich Text)
+- **Grafik:** Recharts (Visualisasi Data)
+- **Drag & Drop:** Dnd-Kit (Elemen Interaktif yang Dapat Diurutkan)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Arsitektur Sistem
+Aplikasi ini memanfaatkan arsitektur berlapis (multi-layered architecture) yang ketat pada logika backend untuk menegakkan pemisahan perhatian (separation of concerns) dan memaksimalkan skalabilitas.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Lapisan Controller:** Secara khusus menangani HTTP request yang masuk, variabel sesi, dan definisi respons Inertia. Tidak ada logika bisnis utama yang disematkan pada lapisan ini.
+- **Lapisan Service:** Menyelesaikan skema logika yang kompleks, manipulasi data lintas entitas, serta penanganan penyimpanan/penghapusan berkas.
+- **Lapisan Repository:** Sebuah lapisan abstraksi yang secara eksplisit berinteraksi dengan Eloquent Model untuk memastikan kueri basis data tetap modular dan dapat digunakan kembali.
+- **Berbasis Antarmuka (Interface Driven):** Menerapkan kontrak antarmuka (`Contracts/BaseRepositoryInterface.php`) yang memastikan kompatibilitas polimorfik dan struktur standar yang ketat di seluruh modul sistem.
 
-## Learning Laravel
+## Fitur Utama
+1. **CMS Landing Page Dinamis**
+   - Hero Section yang dapat disunting dengan pemformatan warna Rich Text dan animasi yang dapat dinyalakan/dimatikan.
+   - Metrik Bisnis yang dapat dikelola dengan operasi drag and drop.
+   - Proposisi Nilai (Value Propositions) yang dinamis.
+   - Integrasi Informasi Layanan dengan validasi sistem.
+   - Konfigurasi Profil Perusahaan terpusat dengan angka metrik historis perusahaan.
+   - Manajemen *Footer* ringkas dan pengaturan konfigurasi SEO master.
+2. **CMS Studi Kasus & Portofolio**
+   - Manajemen CRUD ekstensif untuk dokumentasi operasi spesifik skenario B2B.
+   - Pengelolaan logo dan parameter visibilitas modul Daftar Klien.
+3. **Mini-CRM Pipeline (Manajemen Prospek/Leads)**
+   - Integrasi otomatis formulir pengajuan penawaran dari situs muka langsung menuju Pipeline.
+   - Status siklus hidup klien yang modular: `New`, `Contacted`, `Deal Won`, `Rejected`.
+4. **Insight Dashboard (Pusat Wawasan Operasional)**
+   - Visualisasi tren harian prospek Mini-CRM, metrik aktivitas langsung, yang semuanya divisualisasikan melalui Recharts fungsional.
+5. **Role-Based User Management (Manajemen Pengguna)**
+   - Autorisasi terpusat memanfaatkan hierarki peran dan kewenangan (`Super Admin`, `Admin`, `Editor`).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalasi & Persiapan
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Prasyarat
+- PHP 8.2 atau lebih baru
+- Composer
+- Node.js (v18+) dan npm/yarn
+- Database Relasional (MySQL, PostgreSQL, atau SQLite)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prosedur
+1. **Klon Repositori**
+   ```bash
+   git clone <repository-url>
+   cd altura_sinergi
+   ```
 
-## Laravel Sponsors
+2. **Dependensi Backend**
+   ```bash
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Pengaturan Lingkungan**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   *Catatan: Perbarui variabel di dalam file `.env` dan letakkan penekanan/fokus utama pada kredensial koneksi basis data Anda (`DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`).*
 
-### Premium Partners
+4. **Tautan Penyimpanan Berkas (Storage Links)**
+   Langkah ini wajib dilakukan untuk menghubungkan direktori publik agar aplikasi dapat mengelola berkas/aset CMS yang diunggah secara publik:
+   ```bash
+   php artisan storage:link
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. **Migrasi & Seeding Database**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-## Contributing
+6. **Dependensi Frontend & Kompilasi**
+   ```bash
+   npm install
+   npm run build
+   ```
+   *(Untuk sesi pengembangan aktif/live-reload, gunakan `npm run dev` di tab terminal terpisah).*
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **Peluncuran Server (Development)**
+   ```bash
+   php artisan serve
+   ```
+   Akses aplikasi secara global melalui peramban pada `http://localhost:8000`. Dasbor administratif diakses melalui tautan `/admin`.
 
-## Code of Conduct
+## Ikhtisar Struktur Direktori
+```text
+altura_sinergi/
+├── app/
+│   ├── Http/Controllers/Web/Admin/   # Lapisan presentasi Controller
+│   ├── Models/                       # Entitas ORM (Eloquent)
+│   ├── Modules/                      # Pengelompokan spesifik fitur (berisi Service & Repository)
+│   │   ├── CmsService/
+│   │   ├── Dashboard/
+│   │   ├── LandingPage/
+│   │   └── Leads/
+│   └── Repositories/                 # Abstraksi dan Kontrak Standar Repository Dasar
+├── database/
+│   ├── migrations/                   # Skrip generasi skema tabel basis data
+│   └── seeders/                      # Entri data master/fiktif awal sistem
+├── public/                           # Aset statis terbuka ke publik
+├── resources/
+│   ├── js/
+│   │   ├── Components/               # Komponen Atom & Makro React Global
+│   │   ├── Layouts/                  # Cetak biru tata letak kerangka Inertia
+│   │   └── Pages/Admin/              # Seluruh halaman React tunggal per entitas administratif
+│   └── views/                        # Tampilan peluncur inti sistem Blade Middleware (app.blade.php)
+└── routes/
+    ├── web.php                       # Endpoint halaman terautentikasi dan tamu (guest)
+    └── api.php                       # Rute data API modular (jika disematkan)
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Kerentanan Keamanan
+Jika Anda mendesak menemukan kelemahan/kerentanan pada sisi keamanan aplikasi ini, mohon agar dapat melaporkan vektor anomali tersebut secara langsung via saluran internal ke pihak yang berwenang. Anda tidak diperkenankan untuk mengungkap celah kerentanan maupun bug secara publik.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Lisensi Perangkat Lunak
+Perangkat lunak berbasis web ini memiliki status perangkat lunak hak milik (Proprietary Software). Menyalin, memodifikasi, menggabungkan, mendistribusikan ulang, atau mengeksploitasikan modifikasi dari rilis aplikasi secara publik secara komersial maupun sebaliknya tanpa ada izin dokumentasi persetujuan organisasi, sangat dilarang.

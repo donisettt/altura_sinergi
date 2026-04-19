@@ -12,31 +12,54 @@ class DashboardService extends BaseService
     ) {}
 
     /**
-     * Aggregate all overview stats for the dashboard.
+     * Aggregate all overview stats for the dashboard top cards & activity.
      */
     public function getOverviewStats(): array
     {
         return [
+            // User section
             'total_users'       => $this->dashboardRepository->getTotalUsers(),
             'active_users'      => $this->dashboardRepository->getActiveUsers(),
-            'new_users_month'   => $this->dashboardRepository->getNewUsersThisMonth(),
             'today_logins'      => $this->dashboardRepository->getTodayLogins(),
+
+            // Content & CRM Section
+            'total_leads'       => $this->dashboardRepository->getTotalLeads(),
+            'new_leads_month'   => $this->dashboardRepository->getNewLeadsThisMonth(),
+            
+            'total_case_studies'=> $this->dashboardRepository->getTotalCaseStudies(),
+            'total_services'    => $this->dashboardRepository->getTotalServices(),
+            
+            'leads_deals_today' => $this->dashboardRepository->getLeadsDealsToday(),
+            'new_leads_today'   => $this->dashboardRepository->getNewLeadsToday(),
         ];
     }
 
     /**
-     * Get recent user list for the activity table.
+     * Fetch chart datasets
      */
-    public function getRecentUsers(int $limit = 8): mixed
+    public function getChartData(): array
+    {
+        return [
+            'monthly_leads' => $this->dashboardRepository->getMonthlyLeadStats(8),
+            'yearly_growth' => $this->dashboardRepository->getYearlyLeadGrowth(),
+        ];
+    }
+
+    public function getLeadStatusDistribution(): mixed
+    {
+        return $this->dashboardRepository->getLeadStatusDistribution();
+    }
+
+    /**
+     * Get recent lists
+     */
+    public function getRecentUsers(int $limit = 5): mixed
     {
         return $this->dashboardRepository->getRecentUsers($limit);
     }
 
-    /**
-     * Get role distribution data.
-     */
-    public function getRoleStats(): mixed
+    public function getRecentLeads(int $limit = 6): mixed
     {
-        return $this->dashboardRepository->getRoleStats();
+        return $this->dashboardRepository->getRecentLeads($limit);
     }
 }

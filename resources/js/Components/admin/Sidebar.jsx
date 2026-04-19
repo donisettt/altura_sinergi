@@ -1,8 +1,9 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
     LayoutDashboard, Users, FileText, Image, BarChart2,
-    Settings, ChevronDown, Zap, HelpCircle, CreditCard,
-    Globe, Shield, BookOpen, Tag,
+    Settings, ChevronDown, Zap, HelpCircle, Globe,
+    BookOpen, Tag, Building2, Briefcase, Star, UserRoundCog,
+    Layout, BarChart, Search, Layers, PhoneCall,
 } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -15,44 +16,55 @@ const navGroups = [
         ],
     },
     {
-        label: 'MANAGEMENT',
+        label: 'LANDING PAGE',
         items: [
-            { label: 'Users',     icon: Users,    route: 'admin.users.index',   soon: false },
-            { label: 'Blogs',     icon: BookOpen, route: 'admin.blogs.index',   soon: true,
-              children: [
-                  { label: 'All Posts',   route: 'admin.blogs.index', soon: true },
-                  { label: 'Categories',  route: 'admin.blogs.index', soon: true },
-                  { label: 'Tags',        route: 'admin.blogs.index', soon: true },
-              ]
+            {
+                label: 'Landing Page',
+                icon: Layout,
+                route: 'admin.landing-page.hero.show',
+                children: [
+                    { label: 'Hero Section',       route: 'admin.landing-page.hero.show' },
+                    { label: 'Metrics',            route: 'admin.landing-page.metrics.index' },
+                    { label: 'Value Proposition',  route: 'admin.landing-page.value-propositions.index' },
+                ],
             },
-            { label: 'Pages',     icon: FileText, route: 'admin.pages.index',   soon: true },
-            { label: 'Media',     icon: Image,    route: 'admin.media.index',   soon: true },
-            { label: 'Services',  icon: Tag,      route: 'admin.services.index',soon: true },
+            { label: 'Services',       icon: Tag,          route: 'admin.services.index' },
+            { label: 'Case Studies',   icon: BarChart,     route: 'admin.case-studies.index' },
+            { label: 'Clients',        icon: Star,         route: 'admin.clients.index' },
         ],
     },
     {
-        label: 'ANALYTICS',
+        label: 'COMPANY',
         items: [
-            { label: 'Reports', icon: BarChart2,  route: 'admin.reports.index', soon: true },
+            { label: 'Company Profile', icon: Building2,    route: 'admin.company-profile.show' },
+            { label: 'Leads (CRM)',     icon: PhoneCall,    route: 'admin.leads.index' },
+            { label: 'Footer',          icon: Layers,       route: 'admin.footer.show' },
         ],
     },
     {
-        label: 'PAGES',
+        label: 'SYSTEM',
         items: [
-            { label: 'Settings',  icon: Settings,  route: 'admin.settings.index', soon: true },
-            { label: 'Roles',     icon: Shield,    route: 'admin.roles.index',    soon: true },
-            { label: 'Pricing',   icon: CreditCard,route: 'admin.pricing.index',  soon: true },
-            { label: 'FAQ',       icon: HelpCircle,route: 'admin.faq.index',      soon: true },
-            { label: 'Front Page',icon: Globe,     route: 'admin.front.index',    soon: true },
+            { label: 'Blogs',        icon: BookOpen,       route: 'admin.users.index', soon: true },
+            { label: 'SEO Settings', icon: Search,         route: 'admin.seo.index' },
+            { label: 'Users',        icon: Users,          route: 'admin.users.index' },
+            { label: 'Settings',     icon: Settings,       route: 'admin.users.index', soon: true },
         ],
     },
 ];
+
 
 function NavItem({ item, collapsed }) {
     const { url } = usePage();
     const [open, setOpen] = useState(false);
 
-    const safeRoute = (r) => { try { return route(r); } catch { return '#'; } };
+    const safeRoute = (r) => {
+        try {
+            return route(r);
+        } catch (e) {
+            console.error('Routing error for', r, e);
+            return '#';
+        }
+    };
 
     const isActive = (r) => {
         try {
