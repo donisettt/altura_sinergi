@@ -6,7 +6,7 @@
         <meta name="description" content="Altura Sinergi Solusindo — CMS Admin Panel" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
 
         <!-- Google Fonts: Inter -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
